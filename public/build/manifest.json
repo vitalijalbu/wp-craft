@@ -3,8 +3,8 @@
     "file": "assets/motion-BiGILQgg.js",
     "name": "motion"
   },
-  "_vendor-alpine-CKmlF1QB.js": {
-    "file": "assets/vendor-alpine-CKmlF1QB.js",
+  "_vendor-alpine-BO4393lP.js": {
+    "file": "assets/vendor-alpine-BO4393lP.js",
     "name": "vendor-alpine"
   },
   "_vendor-swiper-Cf3ui32O.js": {
@@ -23,7 +23,7 @@
     "src": "editor.deps.json"
   },
   "resources/css/app.css": {
-    "file": "assets/app-8SjzodQV.css",
+    "file": "assets/app-VHUkPZVT.css",
     "name": "app",
     "names": [
       "app.css"
@@ -50,12 +50,12 @@
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-BXDXWSMu.js",
+    "file": "assets/app-LYdP0LL0.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
-      "_vendor-alpine-CKmlF1QB.js"
+      "_vendor-alpine-BO4393lP.js"
     ],
     "dynamicImports": [
       "resources/js/modules/carousel.js",
@@ -72,12 +72,12 @@
     ]
   },
   "resources/js/modules/carousel.js": {
-    "file": "assets/carousel-DUBR3Uk1.js",
+    "file": "assets/carousel-NYhqM-dZ.js",
     "name": "carousel",
     "src": "resources/js/modules/carousel.js",
     "isDynamicEntry": true,
     "imports": [
-      "_vendor-alpine-CKmlF1QB.js",
+      "_vendor-alpine-BO4393lP.js",
       "_vendor-swiper-Cf3ui32O.js"
     ]
   }

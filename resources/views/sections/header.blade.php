@@ -80,7 +80,7 @@
                     {{-- Pulsante custom 1 (es. "Adotta un amico") ───────────────────────── --}}
                     @if ($show_hbtn1)
                         <a href="{{ esc_url($hbtn1_url ?: home_url('/')) }}"
-                            class="inline-flex items-center gap-2 btn-slide border-ink/25 text-ink hover:bg-ink hover:text-white">
+                            class="btn btn-outline">
                             @if ($hbtn1_icon)
                                 {!! wp_get_attachment_image($hbtn1_icon, [20, 20], false, [
                                     'class' => 'size-5 object-contain',
@@ -94,7 +94,7 @@
                     {{-- Pulsante custom 2 (es. "Dona ora") ─────────────────────────────── --}}
                     @if ($show_hbtn2)
                         <a href="{{ esc_url($hbtn2_url ?: home_url('/')) }}"
-                            class="inline-flex items-center gap-2 btn-slide border-primary/60 text-primary hover:bg-primary hover:text-white">
+                            class="btn btn-outline danger">
                             @if ($hbtn2_icon)
                                 {!! wp_get_attachment_image($hbtn2_icon, [20, 20], false, [
                                     'class' => 'size-5 object-contain',
@@ -133,14 +133,10 @@
                         </button>
                     @endif
 
-                    {{-- Divider ──────────────────────────────────────────────────────── --}}
-                    <span class="w-px h-4 bg-current opacity-15" aria-hidden="true"></span>
-
-
                     {{-- CTA --}}
                     @if ($show_cta)
                         <a href="{{ esc_url($cta_url) }}"
-                            class="btn-slide border-ink/25 text-ink hover:bg-ink hover:text-white">{{ esc_html($cta_label) }}</a>
+                            class="btn btn-outline">{{ esc_html($cta_label) }}</a>
                     @endif
 
                 </div>
@@ -340,7 +336,7 @@
                 <div class="pt-4 space-y-3">
                     @if ($show_hbtn1)
                         <a href="{{ esc_url($hbtn1_url ?: home_url('/')) }}"
-                            class="flex items-center gap-2 py-5 border-b border-white/8 font-sans text-lg font-medium text-white hover:text-primary transition-colors tracking-wide"
+                            class="btn btn-outline-white w-full justify-center"
                             @click="closeMobile()">
                             @if ($hbtn1_icon)
                                 {!! wp_get_attachment_image($hbtn1_icon, [20, 20], false, [
@@ -353,7 +349,7 @@
                     @endif
                     @if ($show_hbtn2)
                         <a href="{{ esc_url($hbtn2_url ?: home_url('/')) }}"
-                            class="flex items-center gap-2 py-5 border-b border-white/8 font-sans text-lg font-medium text-primary hover:text-primary/70 transition-colors tracking-wide"
+                            class="btn btn-outline danger w-full justify-center"
                             @click="closeMobile()">
                             @if ($hbtn2_icon)
                                 {!! wp_get_attachment_image($hbtn2_icon, [20, 20], false, [

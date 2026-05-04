@@ -378,6 +378,18 @@ body.has-hero .page-header-offset {
   color: #ffffff;
 }
 
+/* Outline Danger modifier */
+.btn-outline.danger {
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.btn-outline.danger:hover {
+  background-color: var(--color-error);
+  border-color: var(--color-error);
+  color: #ffffff;
+}
+
 /* Outline White */
 .btn-outline-white {
   background: transparent;

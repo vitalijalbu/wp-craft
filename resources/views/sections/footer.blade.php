@@ -50,16 +50,11 @@
   $footer_logo_id = (int) get_theme_mod('footer_logo', 0);
   $footer_logo_id = $footer_logo_id ?: $custom_logo_id; // fallback al logo principale
 
-  // Dati legali — nuovo richtext field ha priorità sui campi legacy
   $org_legal_html = get_theme_mod('org_legal_text', '');
-  $org_cf         = get_theme_mod('org_codice_fiscale', '');
-  $org_email      = get_theme_mod('org_email',          '');
-  $org_phone      = get_theme_mod('org_phone',          '');
-  $org_address    = get_theme_mod('org_address',        '');
-  $has_legal      = !empty($org_legal_html) || $org_cf || $org_email || $org_phone || $org_address;
+  $has_legal      = !empty($org_legal_html);
 @endphp
 
-<footer class="bg-dark text-white" role="contentinfo">
+<footer class="bg-ink text-white" role="contentinfo">
 
   {{-- ─── Newsletter band ─────────────────────────────────────────────────── --}}
   @if($newsletter_active)
@@ -179,30 +174,12 @@
   {{-- Divider --}}
   <div class="h-px bg-border mx-6 lg:mx-10"></div>
 
-  {{-- ─── Dati Legali (richtext o campi legacy) ──────────────────────────── --}}
+  {{-- ─── Dati Legali ────────────────────────────────────────────────────── --}}
   @if($has_legal)
   <div class="container py-4">
-    @if($org_legal_html)
-      {{-- Nuovo richtext field: testo HTML libero --}}
-      <div class="text-xs text-muted leading-relaxed text-center sm:text-left">
-        {!! wp_kses_post($org_legal_html) !!}
-      </div>
-    @else
-      {{-- Fallback campi legacy --}}
-      <p class="text-xs text-muted leading-relaxed text-center sm:text-left">
-        @if($org_cf){{ __('C.F.', 'sage') }} {{ esc_html($org_cf) }}@endif
-        @if($org_email && $org_cf) &nbsp;·&nbsp; @endif
-        @if($org_email)
-          {{ __('Email:', 'sage') }} <a href="mailto:{{ esc_attr($org_email) }}" class="hover:text-primary transition-colors">{{ esc_html($org_email) }}</a>
-        @endif
-        @if($org_phone && ($org_cf || $org_email)) &nbsp;·&nbsp; @endif
-        @if($org_phone)
-          {{ __('Tel.:', 'sage') }} <a href="tel:{{ esc_attr(preg_replace('/\s+/', '', $org_phone)) }}" class="hover:text-primary transition-colors">{{ esc_html($org_phone) }}</a>
-        @endif
-        @if($org_address && ($org_cf || $org_email || $org_phone)) &nbsp;·&nbsp; @endif
-        @if($org_address){{ esc_html($org_address) }}@endif
-      </p>
-    @endif
+    <div class="text-xs text-muted leading-relaxed text-center sm:text-left">
+      {!! wp_kses_post($org_legal_html) !!}
+    </div>
   </div>
   @endif
 

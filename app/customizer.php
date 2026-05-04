@@ -184,9 +184,9 @@ add_action('customize_register', function (\WP_Customize_Manager $wp_customize):
     $wp_customize->add_control(new \WP_Customize_Media_Control($wp_customize, 'footer_logo', [
         'label' => __('Logo footer (versione chiara/white)', 'sage'),
         'description' => __('Se impostato, viene usato al posto del logo principale nel footer. Ideale per loghi bianchi su sfondo scuro.', 'sage'),
-        'section' => 'theme_theme',
+        'section' => 'title_tagline',
         'mime_type' => 'image',
-        'priority' => 21,
+        'priority' => 9,
     ]));
 
     // Newsletter heading
@@ -351,25 +351,6 @@ add_action('customize_register', function (\WP_Customize_Manager $wp_customize):
         'priority' => 10,
     ]);
 
-    // Campi singoli mantenuti per retrocompatibilità
-    foreach ([
-        ['org_codice_fiscale', __('Codice Fiscale', 'sage'),          'text',     'sanitize_text_field'],
-        ['org_email',          __('Email contatti', 'sage'),           'email',    'sanitize_email'],
-        ['org_phone',          __('Telefono contatti', 'sage'),        'text',     'sanitize_text_field'],
-        ['org_address',        __('Sede legale / indirizzo', 'sage'),  'textarea', 'sanitize_textarea_field'],
-    ] as [$key, $label, $type, $sanitize]) {
-        $wp_customize->add_setting($key, [
-            'default' => '',
-            'sanitize_callback' => $sanitize,
-            'transport' => 'refresh',
-        ]);
-        $wp_customize->add_control($key, [
-            'label' => $label.' '.__('(legacy)', 'sage'),
-            'section' => 'theme_legal',
-            'type' => $type,
-            'priority' => 20,
-        ]);
-    }
 
     // ── Section: Announcement Bar ────────────────────────────────────────────
     $wp_customize->add_section('theme_announcement', [
