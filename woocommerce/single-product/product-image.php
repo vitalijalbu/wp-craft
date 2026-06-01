@@ -75,7 +75,7 @@ $product_title = esc_attr($product->get_name());
             <button
               type="button"
               @click="show(<?php echo $index; ?>, $el)"
-              class="block w-full aspect-square overflow-hidden cursor-zoom-in"
+              class="block w-full h-full overflow-hidden cursor-zoom-in"
               aria-label="<?php printf(esc_attr__('Ingrandisci immagine %d', 'sage'), $index + 1); ?>"
             >
               <picture>

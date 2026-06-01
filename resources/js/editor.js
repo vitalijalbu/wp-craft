@@ -32,6 +32,8 @@ import { useSelect } from '@wordpress/data'
 import { createElement as el, Fragment } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import ServerSideRender from '@wordpress/server-side-render'
+import Swiper from 'swiper'
+import { A11y, Autoplay, FreeMode, Navigation, Pagination, Scrollbar } from 'swiper/modules'
 import { initHeroSwipers } from './modules/swiper-hero.js'
 
 // ── Block Style Variations ─────────────────────────────────────────────────────
@@ -198,25 +200,92 @@ window.addEventListener('DOMContentLoaded', () => {
   })
 })
 
-window.addEventListener('DOMContentLoaded', () => {
-  initHeroSwipers(document, {
-    datasetKey: 'editorSwiperInit',
-    pauseOnMouseEnter: false,
+function initEditorCarousels(root = document) {
+  root.querySelectorAll('.js-products-swiper').forEach((el) => {
+    if (el._swiper) return
+    el._swiper = new Swiper(el, {
+      modules: [Navigation, FreeMode, Scrollbar, A11y],
+      slidesPerView: 1.15,
+      spaceBetween: 16,
+      freeMode: { enabled: true },
+      navigation: {
+        nextEl: el.closest('[data-products-carousel]')?.querySelector('.swiper-button-next'),
+        prevEl: el.closest('[data-products-carousel]')?.querySelector('.swiper-button-prev'),
+      },
+      breakpoints: {
+        640: { slidesPerView: 2.2, spaceBetween: 20 },
+        1024: { slidesPerView: 4, spaceBetween: 24 },
+      },
+    })
   })
+
+  root.querySelectorAll('.js-testimonials-swiper').forEach((el) => {
+    if (el._swiper) return
+    el._swiper = new Swiper(el, {
+      modules: [Navigation, Pagination, A11y],
+      slidesPerView: 1,
+      spaceBetween: 32,
+      pagination: { el: el.querySelector('.swiper-pagination'), clickable: true },
+      navigation: {
+        nextEl: el.closest('[data-testimonials]')?.querySelector('.swiper-button-next'),
+        prevEl: el.closest('[data-testimonials]')?.querySelector('.swiper-button-prev'),
+      },
+      breakpoints: {
+        768: { slidesPerView: 2, spaceBetween: 32 },
+        1024: { slidesPerView: 3, spaceBetween: 40 },
+      },
+    })
+  })
+
+  root.querySelectorAll('.js-logos-swiper').forEach((el) => {
+    if (el._swiper) return
+    el._swiper = new Swiper(el, {
+      modules: [FreeMode, Autoplay, A11y],
+      slidesPerView: 2.5,
+      spaceBetween: 32,
+      loop: true,
+      freeMode: { enabled: true },
+      autoplay: { delay: 0, disableOnInteraction: false },
+      speed: 4000,
+      breakpoints: {
+        480: { slidesPerView: 3, spaceBetween: 40 },
+        768: { slidesPerView: 4.5, spaceBetween: 48 },
+        1024: { slidesPerView: 6, spaceBetween: 56 },
+      },
+    })
+  })
+
+  root.querySelectorAll('.js-generic-swiper').forEach((el) => {
+    if (el._swiper) return
+    const opts = JSON.parse(el.dataset.swiperOptions ?? '{}')
+    el._swiper = new Swiper(el, {
+      modules: [Navigation, Pagination, Autoplay, FreeMode, A11y],
+      slidesPerView: opts.perView ?? 1,
+      spaceBetween: opts.gap ?? 24,
+      loop: opts.loop ?? false,
+      autoplay: opts.autoplay ? { delay: opts.autoplayDelay ?? 4000 } : false,
+      pagination: { el: el.querySelector('.swiper-pagination'), clickable: true },
+      navigation: {
+        nextEl: el.querySelector('.swiper-button-next'),
+        prevEl: el.querySelector('.swiper-button-prev'),
+      },
+      breakpoints: opts.breakpoints ?? {},
+    })
+  })
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  initHeroSwipers(document, { datasetKey: 'editorSwiperInit', pauseOnMouseEnter: false })
+  initEditorCarousels(document)
 
   if (window.wp?.data?.subscribe) {
     let rafId = 0
     window.wp.data.subscribe(() => {
-      if (rafId) {
-        return
-      }
-
+      if (rafId) return
       rafId = window.requestAnimationFrame(() => {
         rafId = 0
-        initHeroSwipers(document, {
-          datasetKey: 'editorSwiperInit',
-          pauseOnMouseEnter: false,
-        })
+        initHeroSwipers(document, { datasetKey: 'editorSwiperInit', pauseOnMouseEnter: false })
+        initEditorCarousels(document)
       })
     })
   }

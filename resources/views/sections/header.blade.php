@@ -48,13 +48,10 @@
 <header id="site-header" x-data="siteHeader" @click.outside="closeMenu()" class="fixed top-0 left-0 right-0 z-50"
     role="banner">
 
-    {{-- ════════════════════════════════════════════════════════════════════════
-       EXPANDED BAR — visible at top of page (collapses on scroll via GSAP)
-       ════════════════════════════════════════════════════════════════════════ --}}
+
     <div x-ref="expandedWrapper" class="header-expanded transition-colors duration-300 bg-white text-ink">
 
-        {{-- ── RIGA 1: Logo + pulsanti custom + azioni ─────────────────────────── --}}
-        <div class="border-b border-border">
+        <div>
             <div class="container-fluid flex items-center justify-between py-1">
 
                 {{-- LEFT: Logo ──────────────────────────────────────────────────────── --}}
@@ -79,8 +76,7 @@
 
                     {{-- Pulsante custom 1 (es. "Adotta un amico") ───────────────────────── --}}
                     @if ($show_hbtn1)
-                        <a href="{{ esc_url($hbtn1_url ?: home_url('/')) }}"
-                            class="btn btn-outline">
+                        <a href="{{ esc_url($hbtn1_url ?: home_url('/')) }}" class="btn btn-outline" target="_blank" rel="noopener">
                             @if ($hbtn1_icon)
                                 {!! wp_get_attachment_image($hbtn1_icon, [20, 20], false, [
                                     'class' => 'size-5 object-contain',
@@ -93,8 +89,7 @@
 
                     {{-- Pulsante custom 2 (es. "Dona ora") ─────────────────────────────── --}}
                     @if ($show_hbtn2)
-                        <a href="{{ esc_url($hbtn2_url ?: home_url('/')) }}"
-                            class="btn btn-outline danger">
+                        <a href="{{ esc_url($hbtn2_url ?: home_url('/')) }}" class="btn btn-outline danger" target="_blank" rel="noopener">
                             @if ($hbtn2_icon)
                                 {!! wp_get_attachment_image($hbtn2_icon, [20, 20], false, [
                                     'class' => 'size-5 object-contain',
@@ -135,8 +130,7 @@
 
                     {{-- CTA --}}
                     @if ($show_cta)
-                        <a href="{{ esc_url($cta_url) }}"
-                            class="btn btn-outline">{{ esc_html($cta_label) }}</a>
+                        <a href="{{ esc_url($cta_url) }}" class="btn btn-outline">{{ esc_html($cta_label) }}</a>
                     @endif
 
                 </div>
@@ -173,7 +167,7 @@
         </div>
 
         {{-- ── RIGA 2: Nav links (desktop only) ────────────────────────────────── --}}
-        <div class="hidden lg:block border-b border-border">
+        <div class="hidden lg:block">
             <div class="container-fluid">
                 <nav aria-label="{{ __('Menu principale', 'sage') }}"
                     class="flex items-stretch justify-end gap-8 h-12">
@@ -336,8 +330,7 @@
                 <div class="pt-4 space-y-3">
                     @if ($show_hbtn1)
                         <a href="{{ esc_url($hbtn1_url ?: home_url('/')) }}"
-                            class="btn btn-outline-white w-full justify-center"
-                            @click="closeMobile()">
+                            class="btn btn-outline-white w-full justify-center" @click="closeMobile()">
                             @if ($hbtn1_icon)
                                 {!! wp_get_attachment_image($hbtn1_icon, [20, 20], false, [
                                     'class' => 'size-5 object-contain',
@@ -349,8 +342,7 @@
                     @endif
                     @if ($show_hbtn2)
                         <a href="{{ esc_url($hbtn2_url ?: home_url('/')) }}"
-                            class="btn btn-outline danger w-full justify-center"
-                            @click="closeMobile()">
+                            class="btn btn-outline danger w-full justify-center" @click="closeMobile()">
                             @if ($hbtn2_icon)
                                 {!! wp_get_attachment_image($hbtn2_icon, [20, 20], false, [
                                     'class' => 'size-5 object-contain',

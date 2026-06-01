@@ -54,7 +54,8 @@
   /* WCAG AA: 3.1:1 on white (large text) */
 
   /* ── Spacing tokens ──────────────────────────────────────────── */
-  --header-height: 172px; /* aggiornato dinamicamente da siteHeader.init() */
+  --header-height: 172px;
+  /* aggiornato dinamicamente da siteHeader.init() */
   --section-sm: clamp(3.75rem, 5vw, 5rem);
   --section-lg: clamp(3.75rem, 6vw, 5.5rem);
 }
@@ -557,6 +558,19 @@ body.has-hero .page-header-offset {
   color: var(--color-surface) !important;
 }
 
+/* ── Block Style Variations — Group ─────────────────────────────────────── */
+
+.wp-block-group.is-style-card {
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  padding: var(--wp--preset--spacing--6);
+}
+
+.wp-block-group.is-style-bordered {
+  border: 1px solid var(--color-border);
+  padding: var(--wp--preset--spacing--6);
+}
+
 /* ── Badge ────────────────────────────────────────────────────────────────── */
 .badge {
   display: inline-flex;
@@ -737,7 +751,8 @@ body.has-hero .page-header-offset {
   background: #fff;
   display: flex;
   flex-direction: column;
-  height: 100%; /* si estende all'altezza della cella griglia */
+  height: 100%;
+  /* si estende all'altezza della cella griglia */
   overflow: hidden;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
@@ -871,7 +886,8 @@ body.has-hero .page-header-offset {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  min-height: calc(1.0625rem * 1.4 * 2); /* riserva sempre 2 righe */
+  min-height: calc(1.0625rem * 1.4 * 2);
+  /* riserva sempre 2 righe */
   transition: color 200ms ease;
 }
 
@@ -1667,18 +1683,7 @@ select:focus {
   text-decoration: none;
 }
 
-.nav-link-t::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--color-primary);
-  transform: scaleX(0);
-  transform-origin: right center;
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-}
+
 
 .nav-link-t:hover,
 .nav-link-t.active,
@@ -1686,14 +1691,6 @@ select:focus {
 .nav-link-t[aria-current="page"] {
   opacity: 1;
   color: var(--color-primary);
-}
-
-.nav-link-t:hover::after,
-.nav-link-t.active::after,
-.nav-link-t[aria-expanded="true"]::after,
-.nav-link-t[aria-current="page"]::after {
-  transform: scaleX(1);
-  transform-origin: left center;
 }
 
 /* Hero top state: keep header links white before scroll */
@@ -1708,6 +1705,7 @@ select:focus {
 #site-header.header--hero-top .nav-link-t:focus-visible {
   color: #fff;
 }
+
 /* ── Mega-menu column hover ──────────────────────────────────────────────── */
 .megamenu-col {
   transition: background-color 0.2s ease;
@@ -2061,13 +2059,14 @@ textarea.contact-input {
 }
 
 .product-gallery__main {
-  aspect-ratio: 4/5;
+  aspect-ratio: 1;
   border-radius: 0;
   overflow: hidden;
 }
 
 .product-gallery__main .swiper-slide {
   overflow: hidden;
+  height: 100%;
 }
 
 /* Navigation arrows */
